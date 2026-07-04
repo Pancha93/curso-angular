@@ -1,0 +1,11 @@
+
+  <div class="container">
+  <ng-container *ngIf="!loading">
+    <img [src]="producto?.image" alt="{{ producto?.title }}" class="img-fluid mb-3" style="max-width: 300px;">
+    <h1 [ngStyle]="{'background-color': color}">Aqui se muestra el detalle del producto: {{ producto?.title }}</h1>
+    <h2 [ngStyle]="{'color': color2}">Precio: {{ producto?.price | currency:'USD'}}</h2>
+    <h3 *ngIf="producto?.description">Descripción: {{ producto?.description}}</h3>
+  </ng-container>
+
+<ng-container *ngIf="loading"><i class="fas fa-spinner fa-spin"></i> Cargando...</ng-container>
+</div>

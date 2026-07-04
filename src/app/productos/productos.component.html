@@ -1,0 +1,21 @@
+<div class="container">
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Product</th>
+      <th scope="col">Price</th>
+      <th scope="col">Detail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let producto of productsList; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ producto.title }}</td>
+      <td [ngClass]="{'red' : producto.price > 100}">{{ producto.price | currency:'USD'}}</td>
+      <td><button type="button" class="btn btn-outline-primary" [routerLink]="['/productos', 'red', producto.id]">Ver detalle</button></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+

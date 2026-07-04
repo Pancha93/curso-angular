@@ -1,0 +1,57 @@
+<!--Este formulario es de plantilla-->
+<div class="container">
+  <form #miFormularioTD="ngForm" (ngSubmit)="enviar()">
+    <div class="mb-3">
+      <label for="name" class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name" name="nombre" [(ngModel)]="usuario.nombre" required/>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="usuario.email" required/>
+    </div>
+    <div class="mb-3">
+      <app-tipo-documento name="tipoDocumento" [(ngModel)]="usuario.tipoDocumento"></app-tipo-documento>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="miFormularioTD.invalid">Enviar</button>
+  </form>
+</div>
+<br><br><br>
+
+
+<!--Este formulario es reactivo-->
+
+<div class="container">
+  <form [formGroup]="miFormulario" (ngSubmit)="enviar2()">
+    <div class="mb-3">
+      <label for="apellido" class="form-label">Apellido</label>
+      <input [ngClass]="{'is-invalid': hasError('apellido', 'required') || hasError('apellido', 'minlength')}"
+        type="text"
+        class="form-control"
+        id="apellido" name="apellido" formControlName="apellido"/>
+        <div class="text-danger" *ngIf="hasError('apellido', 'required')">
+          El apellido es obligatorio.
+        </div>
+        <div class="text-danger" *ngIf="hasError('apellido', 'minlength')">
+          El apellido debe tener al menos 3 caracteres.
+        </div>
+    </div>
+    <div class="mb-3">
+      <label for="correo" class="form-label">Correo</label>
+      <input [ngClass]="{'is-invalid': hasError('correo', 'required') || hasError('correo', 'email')}"
+        type="email" class="form-control" id="correo" name="correo" formControlName="correo"/>
+         <div class="text-danger" *ngIf="hasError('correo', 'required') || hasError('correo', 'email')">
+             El correo es obligatorio y debe ser válido.
+          </div>
+    </div>
+    <div class="mb-3">
+      <app-tipo-documento formControlName="tipoDocumento"></app-tipo-documento>
+      <div class="text-danger" *ngIf="hasError('tipoDocumento', 'required')">
+        Seleccione un tipo de documento.
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="miFormulario.invalid">Enviar</button>
+  </form>
+</div>

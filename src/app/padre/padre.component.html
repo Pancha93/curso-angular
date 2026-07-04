@@ -1,0 +1,23 @@
+<h1 appEstiloHermanos>Hola mundo en Angular</h1>
+<p>Fecha actual: {{ fecha | date:'short'}}</p>
+<p>Cuanto cotiza el dolar: {{ dolar | currency:'USD' }}</p>
+<p>Valor de pi: {{ pi | number:'1.2-2' }}</p>
+<p>Valor de factor: {{ factor | percent }}</p>
+<h1>Contador:</h1>
+<p>{{ valorContador }}</p>
+
+<!--el primero es el mensaje enviado desde el padre al hijo y los demas son 
+mensajes enviados desde el hijo al padre-->
+
+<app-hijo
+  [recibeHijo]="mensajePadre"
+  (enviarMensaje)="recibirMensaje($event)"
+  (incrementarContadorDesdeHijo)="incrementar()"
+  (decrementarContadorDesdeHijo)="decrementar()"
+></app-hijo>
+
+<h5>Mensaje recibido del hijo: {{ reciboMensajeHijo }}</h5>
+
+<h1>{{ nombre }}</h1>
+<button (click)="saludar()">saludar</button>
+<button (click)="preguntarPorHijo()">pregunntar por hijo</button>

@@ -1,0 +1,7 @@
+<div class="mb-3">
+  <label class="form-label">Tipo de documento</label>
+  <select class="form-select" [ngModel]="value" (ngModelChange)="select($event)" (blur)="onTouched()" [disabled]="isDisabled">
+    <option value="">Seleccione...</option>
+    <option *ngFor="let t of tipos" [value]="t">{{ t }}</option>
+  </select>
+</div>
